@@ -1,4 +1,4 @@
-FROM python:3.6
+FROM python:3.6-alpine
 
 # 设置代码文件夹工作目录 /app
 WORKDIR /app
