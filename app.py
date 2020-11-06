@@ -3,6 +3,8 @@ import requests
 from apscheduler.schedulers.blocking import BlockingScheduler
 from bs4 import BeautifulSoup
 
+from settings import *
+
 
 def hostloc():
     headers = {
@@ -13,8 +15,8 @@ def hostloc():
 
     login_data = {
         'fastloginfield': 'username',
-        'username': 'Roo00kie',
-        'password': '642078995abcABC!',
+        'username': loc_username,
+        'password': loc_password,
         'quickforward': 'yes!',
         'handlekey': 'ls!',
     }
@@ -23,8 +25,8 @@ def hostloc():
         data=login_data)
 
     r_forum = sess.get(url='https://www.hostloc.com/forum.php')
-    if 'Roo00kie' in r_forum.text:
-        print('hostloc_points login success')
+    if loc_username in r_forum.text:
+        print('hostloc login success')
     soup = BeautifulSoup(r_forum.text, 'html.parser')
     points0 = soup.find('a', attrs={'id': 'extcreditmenu'}).get_text().split(': ')[1]
 

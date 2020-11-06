@@ -1,13 +1,9 @@
 FROM python:3.6-alpine
 
-# 设置代码文件夹工作目录 /app
 WORKDIR /app
 
-# 复制当前代码文件到容器中 /app
-ADD . /app
+COPY . .
 
-# 安装所需的包
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple
 
-# Run app.py when the container launches
 CMD ["python", "app.py"]
